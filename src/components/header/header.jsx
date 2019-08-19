@@ -12,12 +12,13 @@ const Header = () => {
       </Link>
       <div className='options'>
         <Link className='option' to='/shop'>
-          {' '}
-          SHOP{' '}
+          SHOP
         </Link>
         <Link className='option' to='/contact'>
-          {' '}
-          CONTACT{' '}
+          CONTACT
+        </Link>
+        <Link className='option' to='/signin'>
+          SIGN IN
         </Link>
       </div>
     </div>

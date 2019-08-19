@@ -5,6 +5,7 @@ import './App.css';
 import Header from './components/header/header';
 import HomePage from './pages/homepage/hompage';
 import ShopPage from './pages/shop/shop';
+import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up';
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/shop' component={ShopPage} />
+          <Route exact path='/signin' component={SignInAndSignUpPage} />
         </Switch>
       </div>
     );
