@@ -1,5 +1,8 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import './sign-in.scss';
+
+import { signInWithGoogle } from '../../firebase/firebase.utils';
 
 import FormInput from '../form-input/form-input';
 import CustomButton from '../custom-button/custom-button';
@@ -24,28 +27,33 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div className='sign-in'>
+      <div className="sign-in">
         <h2>I allready have an account</h2>
         <span>Sign in with your email and password</span>
 
         <form onSubmit={this.handleSubmit}>
           <FormInput
-            name='email'
-            type='email'
+            name="email"
+            type="email"
             value={this.state.email}
             handleChange={this.handleChange}
-            label='Email'
+            label="Email"
             required
           />
           <FormInput
-            name='password'
-            type='password'
+            name="password"
+            type="password"
             value={this.state.password}
             handleChange={this.handleChange}
-            label='Password'
+            label="Password"
             required
           />
-          <CustomButton type='submit'>Sign In </CustomButton>
+          <div className="buttons">
+            <CustomButton type="submit">Sign In </CustomButton>
+            <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+              Sign In With Google
+            </CustomButton>
+          </div>
         </form>
       </div>
     );
