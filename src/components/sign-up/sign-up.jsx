@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-useless-return */
 /* eslint-disable no-alert */
 import React, { Component } from 'react';
@@ -5,7 +6,7 @@ import React, { Component } from 'react';
 import FormInput from '../form-input/form-input';
 import CustomButton from '../custom-button/custom-button';
 
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils.js';
+import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 
 import './sign-up.scss';
 
