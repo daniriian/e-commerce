@@ -37,14 +37,14 @@ const googleSignInStyles = css`
 `;
 
 const getButtonStyle = props => {
-  if (props.googleSignIn) {
+  if (props.isGoogleSignIn) {
     return googleSignInStyles;
   }
 
   return props.inverted ? invertedButtonStyles : buttonStyles;
 };
 
-const CustomButtonContainer = styled.div`
+export const CustomButtonContainer = styled.button`
   min-width: 135px;
   width: auto;
   height: 50px;
@@ -52,16 +52,14 @@ const CustomButtonContainer = styled.div`
   line-height: 50px;
   padding: 0 35px;
   font-size: 15px;
-
   text-transform: uppercase;
   font-family: 'Open Sans Condensed';
   font-weight: bolder;
-
   cursor: pointer;
   display: flex;
   justify-content: center;
+  /* position: absolute; */
+  /* top: 235px; */
 
   ${getButtonStyle}
 `;
-
-export default CustomButtonContainer;
