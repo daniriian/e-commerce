@@ -11,15 +11,15 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(cors());
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')));
 
-  app.length('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'client/buil', 'index.html'));
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
 
@@ -32,14 +32,14 @@ app.post('/payment', (req, res) => {
   const body = {
     source: req.body.token.id,
     amount: req.body.amount,
-    currency: 'usd'
+    currency: 'usd',
   };
 
   stripe.charges.create(body, (stripeErr, stripeRes) => {
     if (stripeErr) {
-      res.status(500).send({ error: stripe });
+      res.status(500).send({error: stripe});
     } else {
-      res.status(200).send({ success: stripeRes });
+      res.status(200).send({success: stripeRes});
     }
   });
 });
