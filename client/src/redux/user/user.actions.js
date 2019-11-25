@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import UserActionTypes from './user.types';
 
 export const googleSignInStart = () => ({
@@ -48,6 +47,6 @@ export const signUpSuccess = ({ user, additionalData }) => ({
 });
 
 export const signUpFailure = error => ({
-  type: UserActionTypes.SIGN_UP_SUCCESS,
+  type: UserActionTypes.SIGN_UP_FAILURE,
   payload: error
 });
