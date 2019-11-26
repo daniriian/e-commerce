@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -12,11 +12,19 @@ import CartIcon from '../cart-icon/cart-icon';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import CartDropdown from '../cart-dropdown/cart-dropdown';
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
-import { selectCurrentUser } from '../../redux/user/user.selectors';
+
+import CurrentUserContext from '../../contexts/current-user/current-user.context';
+import CartContext from '../../contexts/cart/cart.context';
 
 import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './header.styles';
 
-const Header = ({ currentUser, hidden }) => {
+const Header = () => {
+  const currentUser = useContext(CurrentUserContext);
+  const [hidden, setHidden] = useState(true);
+  const toggleHidden = () => {
+    setHidden(!hidden);
+  };
+
   return (
     <HeaderContainer>
       <LogoContainer to="/">
@@ -33,7 +41,14 @@ const Header = ({ currentUser, hidden }) => {
         ) : (
           <OptionLink to="/signin">SIGN IN</OptionLink>
         )}
-        <CartIcon />
+        <CartContext.Provider
+          value={{
+            hidden,
+            toggleHidden
+          }}
+        >
+          <CartIcon />
+        </CartContext.Provider>
       </OptionsContainer>
       {hidden ? null : <CartDropdown />}
     </HeaderContainer>
@@ -41,7 +56,6 @@ const Header = ({ currentUser, hidden }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
   hidden: selectCartHidden
 });
 
