@@ -1,21 +1,17 @@
-/* eslint-disable no-shadow */
-/* eslint-disable jsx-a11y/interactive-supports-focus */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { CartContext } from '../../providers/cart/cart.provider';
+
 import './checkout-item.scss';
 
-import { connect } from 'react-redux';
-
-import { clearItemFromCart, addItem, removeItem } from '../../redux/cart/cart.actions';
-
-const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
+const CheckoutItem = ({ cartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
+  const { addItem, removeItem, clearItemFromCart } = useContext(CartContext);
+
   return (
     <div className="checkout-item">
       <div className="image-container">
-        <img alt="item" src={imageUrl} />
+        <img src={imageUrl} alt="item" />
       </div>
       <span className="name">{name}</span>
       <span className="quantity">
@@ -28,20 +24,11 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
         </div>
       </span>
       <span className="price">{price}</span>
-      <div className="remove-button" role="button" onClick={() => clearItem(cartItem)}>
+      <div className="remove-button" onClick={() => clearItemFromCart(cartItem)}>
         &#10005;
       </div>
     </div>
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  clearItem: item => dispatch(clearItemFromCart(item)),
-  addItem: item => dispatch(addItem(item)),
-  removeItem: item => dispatch(removeItem(item))
-});
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(CheckoutItem);
+export default CheckoutItem;

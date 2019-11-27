@@ -14,16 +14,13 @@ import CartDropdown from '../cart-dropdown/cart-dropdown';
 import { selectCartHidden } from '../../redux/cart/cart.selectors';
 
 import CurrentUserContext from '../../contexts/current-user/current-user.context';
-import CartContext from '../../contexts/cart/cart.context';
+import { CartContext } from '../../providers/cart/cart.provider';
 
 import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './header.styles';
 
 const Header = () => {
   const currentUser = useContext(CurrentUserContext);
-  const [hidden, setHidden] = useState(true);
-  const toggleHidden = () => {
-    setHidden(!hidden);
-  };
+  const { hidden } = useContext(CartContext);
 
   return (
     <HeaderContainer>
@@ -41,14 +38,7 @@ const Header = () => {
         ) : (
           <OptionLink to="/signin">SIGN IN</OptionLink>
         )}
-        <CartContext.Provider
-          value={{
-            hidden,
-            toggleHidden
-          }}
-        >
-          <CartIcon />
-        </CartContext.Provider>
+        <CartIcon />
       </OptionsContainer>
       {hidden ? null : <CartDropdown />}
     </HeaderContainer>

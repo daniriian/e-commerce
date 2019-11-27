@@ -1,17 +1,15 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-one-expression-per-line */
-import React from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-
-import { selectCartItems, selectCartTotal } from '../../redux/cart/cart.selectors';
+import React, { useContext } from 'react';
 
 import CheckoutItem from '../../components/checkout-item/checkout-item';
 import StripeCheckoutButton from '../../components/stripe-button/stipe-button';
 
+import { CartContext } from '../../providers/cart/cart.provider';
+
 import './checkout.scss';
 
-const Checkout = ({ cartItems, total }) => {
+const Checkout = () => {
+  const { cartItems, cartTotal } = useContext(CartContext);
+
   return (
     <div className="checkout-page">
       <div className="checkout-header">
@@ -21,41 +19,28 @@ const Checkout = ({ cartItems, total }) => {
         <div className="header-block">
           <span>Description</span>
         </div>
-
         <div className="header-block">
           <span>Quantity</span>
         </div>
-
         <div className="header-block">
           <span>Price</span>
         </div>
-
         <div className="header-block">
           <span>Remove</span>
         </div>
       </div>
-
-      {cartItems.map(item => (
-        <CheckoutItem key={item.id} cartItem={item} />
+      {cartItems.map(cartItem => (
+        <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
-
-      <div className="total">
-        <span>TOTAL: ${total}</span>
-      </div>
-
+      <div className="total">TOTAL: ${cartTotal}</div>
       <div className="test-warning">
-        *Please use the following test card for payments*
+        *Please use the following test credit card for payments*
         <br />
-        4242 4242 4242 4242 - Exp: 01/20 - CVV 123
+        4242 4242 4242 4242 - Exp: 01/20 - CVV: 123
       </div>
-      <StripeCheckoutButton price={total} />
+      <StripeCheckoutButton price={cartTotal} />
     </div>
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  cartItems: selectCartItems,
-  total: selectCartTotal
-});
-
-export default connect(mapStateToProps)(Checkout);
+export default Checkout;
