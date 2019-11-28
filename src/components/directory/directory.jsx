@@ -1,16 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useContext } from 'react';
 import './directory.scss';
 
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-
-import { selectDirectorySections } from '../../redux/directory/directory.selectors';
+import DirectoryContext from '../../contexts/directory/directory.context';
 
 import MenuItem from '../menu-item/menu-item';
 
-const Directory = ({ sections }) => {
+const Directory = () => {
+  const sections = useContext(DirectoryContext);
   return (
     <div className="directory-menu">
       {sections.map(({ id, ...otherSectionProps }) => {
@@ -20,8 +18,4 @@ const Directory = ({ sections }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  sections: selectDirectorySections
-});
-
-export default connect(mapStateToProps)(Directory);
+export default Directory;
