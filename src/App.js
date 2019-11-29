@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-default */
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
@@ -8,7 +9,7 @@ import './App.css';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import Header from './components/header/header';
+import { default as Header } from './components/header/header.container';
 import HomePage from './pages/homepage/hompage';
 import ShopPage from './pages/shop/shop';
 import Checkout from './pages/checkout/checkout';
