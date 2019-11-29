@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
@@ -7,26 +6,24 @@ import CartItem from '../cart-item/cart-item';
 
 import './cart-dropdown.scss';
 
-const CartDropdown = ({ cartItems, history, toggleCartHidden }) => {
-  return (
-    <div className="cart-dropdown">
-      <div className="cart-items">
-        {cartItems.length ? (
-          cartItems.map(cartItem => <CartItem key={cartItem.id} item={cartItem} />)
-        ) : (
-          <span className="empty-message">Your cart is empty</span>
-        )}
-      </div>
-      <CustomButton
-        onClick={() => {
-          history.push('/checkout');
-          toggleCartHidden();
-        }}
-      >
-        Go To Checkout
-      </CustomButton>
+const CartDropdown = ({ cartItems, history, toggleCartHidden }) => (
+  <div className="cart-dropdown">
+    <div className="cart-items">
+      {cartItems.length ? (
+        cartItems.map(cartItem => <CartItem key={cartItem.id} item={cartItem} />)
+      ) : (
+        <span className="empty-message">Your cart is empty</span>
+      )}
     </div>
-  );
-};
+    <CustomButton
+      onClick={() => {
+        history.push('/checkout');
+        toggleCartHidden();
+      }}
+    >
+      GO TO CHECKOUT
+    </CustomButton>
+  </div>
+);
 
 export default withRouter(CartDropdown);
