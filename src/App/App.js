@@ -1,15 +1,14 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import './App.css';
-
 import HomePage from '../pages/homepage/hompage';
 import ShopPage from '../pages/shop/shop';
 import SignInAndSignUpPage from '../pages/sign-in-and-sign-up/sign-in-and-sign-up';
 import { default as CheckoutPage } from '../pages/checkout/checkout.container';
 
-import { default as Header } from '../components/header/header.container';
+import { GlobalStyle } from '../global.styles';
 
+import { default as Header } from '../components/header/header.container';
 import { auth, createUserProfileDocument } from '../firebase/firebase.utils';
 
 class App extends React.Component {
@@ -41,6 +40,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <GlobalStyle />
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
