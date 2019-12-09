@@ -1,3 +1,4 @@
+<<<<<<< HEAD:client/.eslintrc.json
 {
   "extends": ["airbnb", "prettier"],
   "plugins": ["prettier"],
@@ -21,3 +22,52 @@
     "no-trailing-spaces": "off"
   }
 }
+||||||| merged common ancestors
+{
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier"],
+  "parser": "babel-eslint",
+  "env": {
+    "node": true,
+    "es6": true,
+    "browser": true
+  },
+  "rules": {
+    "prettier/prettier": ["error"],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "implicit-arrow-linebreak": "off",
+    "comma-dangle": "off",
+    "indent": "off",
+    "no-trailing-spaces": "off"
+  }
+}
+=======
+{
+  "extends": ["prettier"],
+  "plugins": ["prettier"],
+  "parser": "babel-eslint",
+  "env": {
+    "node": true,
+    "es6": true,
+    "browser": true
+  },
+  "rules": {
+    "prettier/prettier": ["error"],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "implicit-arrow-linebreak": "off",
+    "comma-dangle": "off",
+    "indent": "off",
+    "no-trailing-spaces": "off"
+  }
+}
+>>>>>>> commerce:client/.eslintrc.json
